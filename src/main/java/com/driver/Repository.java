@@ -31,7 +31,7 @@ public class Repository {
                 size = airport.getNoOfTerminals();
                 ans = airport.getAirportName();
             } else if (airport.getNoOfTerminals() == size) {
-                if (airport.getAirportName().compareTo(ans) > 0) {
+                if (airport.getAirportName().compareTo(ans) < 0) {
                     ans = airport.getAirportName();
                 }
             }
@@ -40,7 +40,7 @@ public class Repository {
     }
 
     public double getShortestDis(City fromCity, City toCity) {
-        double ans = Integer.MAX_VALUE;
+        double ans = 1000000000;
         for (Flight flight : flightDB.values()) {
             if (flight.getFromCity().equals(fromCity) && flight.getToCity().equals(toCity)) {
                 ans = Math.min(ans, flight.getDuration());
@@ -70,7 +70,7 @@ public class Repository {
 
     public int pricing(int flightid) {
         int allbokings = passengerInTheFlightDB.get(flightid).size();
-        return allbokings * 50 + 300;
+        return allbokings * 50 + 3000;
     }
 
     public String booking(Integer flightId, Integer PassengerId) {
@@ -140,7 +140,7 @@ public class Repository {
 
     public int calculate(Integer flightId){
         int noOfPeopleBooked = passengerInTheFlightDB.get(flightId).size();
-        int variableFare = (noOfPeopleBooked*(noOfPeopleBooked+1))*25;
+        int variableFare = (noOfPeopleBooked*(noOfPeopleBooked))*25;
         int fixedFare = 3000*noOfPeopleBooked;
         int totalFare = variableFare + fixedFare;
 
