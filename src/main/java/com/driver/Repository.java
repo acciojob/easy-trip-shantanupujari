@@ -31,7 +31,7 @@ public class Repository {
                 size = airport.getNoOfTerminals();
                 ans = airport.getAirportName();
             } else if (airport.getNoOfTerminals() == size) {
-                if (airport.getAirportName().compareTo(ans) > 0) {
+                if (airport.getAirportName().compareTo(ans) < 0) {
                     ans = airport.getAirportName();
                 }
             }
@@ -140,7 +140,7 @@ public class Repository {
 
     public int calculate(Integer flightId){
         int noOfPeopleBooked = passengerInTheFlightDB.get(flightId).size();
-        int variableFare = (noOfPeopleBooked*(noOfPeopleBooked+1))*25;
+        int variableFare = (noOfPeopleBooked*(noOfPeopleBooked))*25;
         int fixedFare = 3000*noOfPeopleBooked;
         int totalFare = variableFare + fixedFare;
 
