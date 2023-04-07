@@ -147,9 +147,13 @@ public class Repository {
 
     public int calculate(Integer flightId){
         int noOfPeopleBooked = passengerInTheFlightDB.get(flightId).size();
-        int fixedFare = 3000*noOfPeopleBooked;
-        return fixedFare;
+//        int variableFare = (noOfPeopleBooked*(noOfPeopleBooked+1))*25;
+//        int fixedFare = 3000*noOfPeopleBooked;
+        int totalFare =  (25 * noOfPeopleBooked * noOfPeopleBooked) + (2975 * noOfPeopleBooked);
+
+        return totalFare;
     }
+
     public String addPassenger(Passenger passenger){
       passengerDB.put(passenger.getPassengerId(), passenger);
       return "SUCCESS";
