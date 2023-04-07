@@ -24,19 +24,26 @@ public class Repository {
     }
 
     public String getLargestAirport() {
-        int size = 0;
-        String ans = "";
-        for (Airport airport : airportDB.values()) {
-            if (airport.getNoOfTerminals() > size) {
-                size = airport.getNoOfTerminals();
-                ans = airport.getAirportName();
-            } else if (airport.getNoOfTerminals() == size) {
-                if (airport.getAirportName().compareTo(ans) < 0) {
-                    ans = airport.getAirportName();
-                }
+        List<String> list = new ArrayList<>();
+        int max = Integer.MIN_VALUE;
+
+        for(Airport st : airportDB.values())
+        {
+            if (max < st.getNoOfTerminals())
+                max = st.getNoOfTerminals();
+        }
+
+        for(Airport st : airportDB.values())
+        {
+            if(st.getNoOfTerminals() == max)
+            {
+                list.add(st.getAirportName());
             }
         }
-        return ans;
+        if(list.size() > 1)
+            Collections.sort(list);
+
+        return list.get(0);
     }
 
     public double getShortestDis(City fromCity, City toCity) {
